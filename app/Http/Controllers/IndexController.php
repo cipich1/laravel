@@ -10,8 +10,8 @@ class IndexController extends Controller
 {
     public function index()
     {
-    	$hw = "Noroc";
-    	$arr= "Victor";
+    	$hw = "Buna Ziua";
+    	$arr= "Ciprian";
     	$articles = Article::all();
     	return view('index')->with(['hw'=>$hw, 'arr'=>$arr, 'articles'=>$articles]);
     	
