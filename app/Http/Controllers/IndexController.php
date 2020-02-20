@@ -10,7 +10,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-    	$hw = "Buna Ziua";
+    	$hw = "Buna Ziuklja";
     	$arr= "Ciprian";
     	$articles = Article::all();
     	return view('index')->with(['hw'=>$hw, 'arr'=>$arr, 'articles'=>$articles]);
