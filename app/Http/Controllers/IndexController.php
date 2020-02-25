@@ -2,19 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Article;
-
 class IndexController extends Controller
 {
-    public function index()
-    {
-    	$hw = "Buna Ziuklja";
-    	$arr= "Ciprian";
-    	$articles = Article::all();
-    	return view('index')->with(['hw'=>$hw, 'arr'=>$arr, 'articles'=>$articles]);
-    	
+  protected $hw;
+  protected $arr;
 
-    }
+  public function _construct(){
+    $this->hw='Hello World!!!';
+    $this->arr='This is a template for a simple marketing ';
+  }
+
+  public function index(){
+  $hw="Salut , Victor !";
+    $arr="This is a template ";
+    $articles=Article::select(['id','title','description','img'])->get();
+    return view('index')->with(['hw'=>$this->hw,
+                               'arr'=>$this->arr,
+                               'articles'=>$articles]);
+  	
+  }
+  public function pag2(){
+  	$hw="Salut , Victor !";
+  	$arr="This is a template ";
+  	$articles=Article::all();
+  	return view('pag2')->with(['hw'=>$hw,
+                               'arr'=>$arr,
+                           'articles'=>$articles]);
+  	
+  }
+  public function show($id){
+    $article=Article::select(['id', 'title', 'text'])->where('id',$id)->first();
+    return view('article-content')->with(['hw'=>$this->hw,
+                                          'arr'=>$this->arr,
+                                          'article'=>$article]);
+  }
 }
