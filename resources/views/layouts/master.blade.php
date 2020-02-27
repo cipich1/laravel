@@ -26,7 +26,18 @@
          </div>
        </div>
     </nav>
-    @yield('content')
+    @if(count($errors)>0)
+    <div class="alert alert-danger">
+      <ul>
+        @foreach($errors->all() as $error)
+        <li>{{$errors}}</li>
+        @endforeach
+      </ul>    
+
+      @endif
+
+      @yield('content')
+
 <footer class="container">
   <p>&copy; 2020 Company, Inc.</p>
 </footer>

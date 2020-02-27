@@ -40,4 +40,19 @@ class IndexController extends Controller
                                           'arr'=>$this->arr,
                                           'article'=>$article]);
   }
+  public function add(){
+  return view('add-content')->with(['hw'=>$this->hw,'arr'=>$this->arr]);
+}
+public function store(Request $request){
+  $this->validate($request,['title'=>'requied | max:50',
+                             'description' => 'required | max:200',
+                             'text'=>'required']);
+  $data = $request->all();
+  $article = new Article;
+  $article ->fill($data);
+  $article ->save();
+
+  return redirect('/');
+}
+
 }
